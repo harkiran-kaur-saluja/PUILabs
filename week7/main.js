@@ -3,26 +3,26 @@ function Cat(name, age) {
   this.name = name;
   this.age = age;
   this.image = "cat.jpg";
-  this.type = "Cat";
+  this.image_alt = "A cute grey cat with giant green eyes";
 }
 
 function Dog(name, age) {
   this.name = name;
   this.age = age;
   this.image = "dog.jpg"
-  this.type = "Dog";
+  this.image_alt = "An adorable little dog with big ears and orange fur";
 }
 
 function Bird(name, age) {
   this.name = name;
   this.age = age;
-  this.image = "bird.jpg"
-  this.type = "Bird";
+  this.image = "bird.jpg";
+  this.image_alt = "A puff ball grey and white bird sitting on a branch";
 }
 
 /*** Global Variables ***/
-var animals = [new Cat(), new Dog(), new Bird()];
-var names = ["Toothless", "Marshmallow", "Momo", "Coco", "Ollie", "Oscar", "Bella", "Ruby", "Apples"];
+let animals = [new Cat(), new Dog(), new Bird()];
+let names = ["Toothless", "Marshmallow", "Momo", "Coco", "Ollie", "Oscar", "Bella", "Ruby", "Apples"];
 
 /*** Functions ***/
 // get a random index for an array from 0 to maxIndex (not inclusive)
@@ -32,8 +32,8 @@ function getRandomIndex(maxIndex) {
 
 // generates either a Cat, Dog, or Bird with a random name and random age
 function generateRandomAnimal() {
-  var randomIdx = getRandomIndex(animals.length);
-  var randomAnimal = animals[randomIdx];
+  let randomIdx = getRandomIndex(animals.length);
+  let randomAnimal = animals[randomIdx];
 
   if (randomAnimal instanceof Cat) 
   {
@@ -51,24 +51,25 @@ function generateRandomAnimal() {
 
 // generates a random name from list of names
 function generateRandomName() {
-  var randomIdx = getRandomIndex(names.length);
+  let randomIdx = getRandomIndex(names.length);
   return names[randomIdx];
 }
 
 // generates a random age from 0 to 5
 function generateRandomAge() {
-  var randomIdx = getRandomIndex(5);
-  return randomIdx;
+  return getRandomIndex(5);
 }
 
 /*** Document Load ****/
 function onLoad() {
 
   // generate a random animal when the document opens
-  var animal = generateRandomAnimal();
+  let animal = generateRandomAnimal();
   console.log(animal)
   // update the page based on the animal properties
   document.getElementById("animal-properties").textContent = animal.name + "  " + animal.age + "years old";
-  document.getElementById("animal-img").setAttribute("src", animal.image)
+  let imageTag = document.getElementById("animal-img");
+  imageTag.setAttribute("src", animal.image);
+  imageTag.setAttribute("alt", animal.image_alt);
 
-};
+}
